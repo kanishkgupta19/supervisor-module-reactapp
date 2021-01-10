@@ -8,31 +8,31 @@ import img_bill from '../assets/icons/bill.jpeg';
 const WelcomeView = () => {
   return (
     <div
-      class="welcome-view mt-12"
-      style={{ 'margin-left': '30px', 'margin-right': '30px' }}
+      className="welcome-view mt-12"
+      style={{ marginLeft: '30px', marginRight: '30px' }}
     >
-      <div class="parcel-tracker">
-        <h2 class="text-grey text-2xl font-black">
-          Welcome Back, <span class="text-orange">Supervisor!</span>
+      <div className="parcel-tracker">
+        <h2 className="text-grey text-2xl font-black">
+          Welcome Back, <span className="text-orange">Supervisor!</span>
         </h2>
 
-        <div class="parcel-search text-white py-16 px-6 mt-4">
-          <p class="font-bold">
+        <div className="parcel-search text-white py-16 px-6 mt-4">
+          <p className="font-bold">
             Enter your parcel number <br />
             to track your deliveries
           </p>
           <input
             type="text"
-            class="text-xs w-auto text-grey px-4 py-3 mt-4 rounded-lg"
+            className="text-xs w-auto text-grey px-4 py-3 mt-4 rounded-lg"
             style={{ width: '70%' }}
             placeholder="Enter parcel number here"
           />
           <button
-            class="ml-2 font-bold rounded-lg px-4"
+            className="ml-2 font-bold rounded-lg px-4"
             style={{
               background: '#ff3434',
-              'padding-top': '0.6rem',
-              'padding-bottom': '0.7rem',
+              'paddingTop': '0.6rem',
+              'paddingBottom': '0.7rem',
             }}
           >
             Submit
@@ -40,38 +40,86 @@ const WelcomeView = () => {
         </div>
       </div>
 
-      <div class="driver-details p-6 bg-white">
-        <div class="date-time flex flex-row">
-          <div class="time text-xl font-bold">
+      <div className="driver-details p-6 bg-white">
+        <div className="date-time flex flex-row">
+          <div className="time text-xl font-bold">
             <img
               src={ic_clock}
-              style={{ 'verticle-align': 'middle' }}
-              class="inline mr-1"
+              style={{ 'verticleAlign': 'middle' }}
+              className="inline mr-1"
               alt="clock"
             />
             3:50 PM
           </div>
 
-          <div class="date ml-auto text-sm font-bold">
-            <img src={ic_calender} class="inline" alt="ic_calendar" />
+          <div className="date ml-auto text-sm font-bold">
+            <img src={ic_calender} className="inline" alt="ic_calendar" />
             6th Aug 2020
           </div>
         </div>
 
-        <div class="driver flex flex-row mt-6 justify-end">
-          <div class="driver-name text-right">
-            <p class="text-grey text-sm">Supervisor</p>
-            <p class="text-2xl font-bold" style={{ color: '#212121' }}>
+        <div className="driver flex flex-row mt-6 justify-end">
+          <div className="driver-name text-right">
+            <p className="text-grey text-sm">Supervisor</p>
+            <p className="text-2xl font-bold" style={{ color: '#212121' }}>
               Mahesh Kumar
             </p>
-            <img src={ic_settings} class="inline" alt="settings icon" />
+            <img src={ic_settings} className="inline" alt="settings icon" />
           </div>
-          <img class="photo ml-3" src={img_bill} alt="bill" />
+          <img className="photo ml-3" src={img_bill} alt="bill" />
         </div>
 
-        <div class="location text-center mt-6">
-          <p class="font-bold" style={{ color: '#212121' }}>
-            <img class="inline" src={ic_location_marker} alt="location-icon" />
+        <div className="location text-center mt-6">
+          <p className="font-bold" style={{ color: '#212121' }}>
+            <img
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+              className="inline"
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                         src={ic_location_marker}
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                         alt="location-icon"
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+            />
             Warehouse, Gurgaon
           </p>
         </div>

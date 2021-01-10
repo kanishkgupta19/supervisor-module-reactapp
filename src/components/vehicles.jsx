@@ -8,7 +8,7 @@ const Vehicles = () => {
     <React.Fragment>
       <div
         className="flex flex-row mt-12"
-        style={{ 'margin-left': '30px', 'margin-right': '30px' }}
+        style={{ marginLeft: '30px', marginRight: '30px' }}
       >
         <p className="text-2xl font-black text-grey">Your Vehicles</p>
         <p

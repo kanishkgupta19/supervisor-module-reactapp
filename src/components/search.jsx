@@ -6,7 +6,7 @@ const Search = () => {
   return (
     <div
       className="search-notification"
-      style={{ 'margin-left': '30px', 'margin-right': '30px' }}
+      style={{ 'marginLeft': '30px', 'marginRight': '30px' }}
     >
       <img
         src={search_icon}
@@ -24,7 +24,7 @@ const Search = () => {
           src={notification_icon}
           alt="notification"
           className="inline"
-          style={{ 'verticle-align': 'middle' }}
+          style={{ verticleAlign: 'middle' }}
         />
         Notification <span className="badge">4</span>
       </a>

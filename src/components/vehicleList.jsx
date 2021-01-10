@@ -24,33 +24,34 @@ const VehicleList = () => {
     <React.Fragment>
       {vehicleData.map(value => (
         <div
-          class=" vehicle-info-card grid grid-cols-5 p-3 mb-4 text-grey font-bold  text-sm text-center"
+          className=" vehicle-info-card grid grid-cols-5 p-3 mb-4 text-grey font-bold  text-sm text-center"
           id="vehicle-info-card"
+          key={Math.floor(Math.random()*10000)}
         >
-          <div class="text-left">
+          <div className="text-left">
             <img
               src={ic_parcel_box}
               alt="parcel-box"
-              class="inline w-16"
-              style={{ 'vertical-align': 'middle' }}
+              className="inline w-16"
+              style={{ 'verticalAlign': 'middle' }}
             />
             Vehicle {value.key}
           </div>
-          <div class="relative pt-2">
-            <p class=" number-plate text-black">${value.number} </p>
+          <div className="relative pt-2">
+            <p className=" number-plate text-black">${value.number} </p>
           </div>
-          <div class="pt-4 text-center">
+          <div className="pt-4 text-center">
             <p>${value.date}</p>
           </div>
-          <div class="pt-3">
+          <div className="pt-3">
             <img
               src={status[value.status]}
-              class="w-32 inline"
+              className="w-32 inline"
               alt={`${value.status}`}
             />
           </div>
-          <div class="pt-4 text-orange">
-            <p class="underline pointer " id="view-details">
+          <div className="pt-4 text-orange">
+            <p className="underline pointer " id="view-details">
               {' '}
               View Details{' '}
             </p>
