@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import SideBar from './components/sidebar';
+import Dashboard from './components/dashboard';
+import Info from './components/info';
+import vehicles from './assets/vehicles.json';
+
+export const VehicleContext = React.createContext();
 
 function App() {
+  const [vehicle, setVehicles] = useState(vehicles);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="dashboard">
+      <SideBar setVehicles={setVehicles} />
+      <VehicleContext.Provider value={vehicle}>
+        <Dashboard />
+      </VehicleContext.Provider>
+      <Info />
     </div>
   );
 }
