@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import today_task_icon_on from '../assets/icons/ic_today_task_on.svg';
 import today_task_icon_off from '../assets/icons/ic_today_task_off.svg';
 import future_task_icon_on from '../assets/icons/ic_future_task_icon_on.svg';
@@ -13,9 +13,7 @@ import vehicles1 from '../assets/vehicles1.json';
 import vehicles2 from '../assets/vehicles2.json';
 import vehicles3 from '../assets/vehicles3.json';
 
-const SideBar = ({ setVehicles }) => {
-  const [current, setCurrent] = useState(0);
-
+const SideBar = ({ setVehicles, current, setCurrent }) => {
   return (
     <div className="side-nav pr-6 pt-8 text-right">
       <div className="brand-logo">
@@ -47,9 +45,11 @@ const SideBar = ({ setVehicles }) => {
             cursor: 'pointer',
           }}
         >
+          
+          
           <img
             src={current === 0 ? today_task_icon_on : today_task_icon_off}
-            className="inline mr-6"
+            className="inline"
             alt="Today Tasks"
           />
           <br />

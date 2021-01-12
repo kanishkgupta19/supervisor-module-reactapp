@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import SideBar from './components/sidebar';
 import Dashboard from './components/dashboard';
 import Info from './components/info';
@@ -9,14 +8,19 @@ export const VehicleContext = React.createContext();
 
 function App() {
   const [vehicle, setVehicles] = useState(vehicles);
+  const [current, setCurrent] = useState(0);
 
   return (
     <div className="dashboard">
-      <SideBar setVehicles={setVehicles} />
+      <SideBar
+        setVehicles={setVehicles}
+        current={current}
+        setCurrent={setCurrent}
+      />
       <VehicleContext.Provider value={vehicle}>
         <Dashboard />
+        <Info current={current} />
       </VehicleContext.Provider>
-      <Info />
     </div>
   );
 }

@@ -2,10 +2,9 @@ import React from 'react';
 import img_truck from '../assets/icons/truck.svg';
 import number_plate from '../assets/icons/number_plate.svg';
 import img_bill from '../assets/icons/bill.jpeg';
-import ic_tick from '../assets/icons/ic_tick.svg';
-import ic_truck_small_stepper from '../assets/icons/ic_truck_small_stepper.svg';
+import Status from './status';
 
-const Info = () => {
+const Info = ({ current }) => {
   return (
     <React.Fragment>
       <div className="vehicle-information">
@@ -63,68 +62,7 @@ const Info = () => {
             </div>
           </div>
         </div>
-
-        <div className="progress-bar ml-10 mt-10">
-          <div className="flex flex-row">
-            <div className="bg-green h-6 w-6 pt-1 pl-1 pr-1 pb-1 rounded-full mt-3">
-              <img src={ic_tick} alt="completed" />
-            </div>
-            <div className="ml-4">
-              <p className="text-black text-md font-bold">ARRIVAL</p>
-              <p className="text-grey text-xs">
-                Location A, Noida
-                <span className="text-black ml-10"> 7 July, 9:30 AM</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="h-20 w-2 rounded-full bg-gray ml-2">
-            <div className="h-20 w-2 rounded-full bg-green"></div>
-          </div>
-
-          <div className="flex flex-row -mt-2">
-            <div className="bg-green h-6 w-6 pt-1 pl-1 pr-1 pb-1 rounded-full mt-3">
-              <img src={ic_truck_small_stepper} alt="completed" />
-            </div>
-            <div className="ml-4">
-              <p className="text-black text-md font-bold">UNLOADING</p>
-              <p className="text-grey text-xs">
-                Location B, Noida
-                <span className="text-black ml-10"> 7 July, 11:30 AM</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="h-20 w-2 rounded-full bg-green ml-2 bg-gray">
-            <div className="h-12 w-2 rounded-full bg-green"></div>
-          </div>
-
-          <div className="flex flex-row -mt-2">
-            <div className="bg-white h-3 w-3 p-2 rounded-full mt-3 border-gray"></div>
-            <div className="ml-4">
-              <p className="text-black text-md font-bold">UNLOADING</p>
-              <p className="text-grey text-xs">
-                Location C, Noida
-                <span className="text-black ml-10"> 7 July, 12:10 AM</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="h-20 w-2 rounded-full bg-green ml-2 bg-gray">
-            <div className="h-0 w-2 rounded-full bg-green"></div>
-          </div>
-
-          <div className="flex flex-row -mt-2">
-            <div className="bg-white h-3 w-3 p-2 rounded-full mt-3 border-gray"></div>
-            <div className="ml-4">
-              <p className="text-black text-md font-bold">DEPARTURE</p>
-              <p className="text-grey text-xs">
-                Location C, Noida
-                <span className="text-black ml-10"> 7 July, 14:30 AM</span>
-              </p>
-            </div>
-          </div>
-        </div>
+        <Status current={current} />
       </div>
     </React.Fragment>
   );
