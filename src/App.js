@@ -9,7 +9,7 @@ export const VehicleContext = React.createContext();
 function App() {
   const [vehicle, setVehicles] = useState(vehicles);
   const [current, setCurrent] = useState(0);
-
+  document.title = 'Dashboard';
   return (
     <div className="dashboard">
       <SideBar
