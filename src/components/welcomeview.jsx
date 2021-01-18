@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import ic_clock from '../assets/icons/ic_clock.svg';
 import ic_calender from '../assets/icons/ic_calendar.svg';
 import ic_settings from '../assets/icons/ic_settings.svg';
@@ -6,6 +7,28 @@ import ic_location_marker from '../assets/icons/ic_location_marker.svg';
 import img_bill from '../assets/icons/bill.jpeg';
 
 const WelcomeView = () => {
+  const [userData, SetUserData] = useState({});
+
+  const fetchUser = () => {
+    axios
+      .get(
+        'https://arc2e2m4p9.execute-api.us-west-2.amazonaws.com/dev/login?Mob No=123456700',
+        {
+          headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            Accept: 'application/json',
+          },
+        }
+      )
+      .then(res => {
+        SetUserData(res.data['User Data']);
+        console.log(userData);
+      });
+  };
+
+  useEffect(fetchUser, []);
+
   return (
     <div
       className="welcome-view mt-12"
@@ -31,8 +54,8 @@ const WelcomeView = () => {
             className="ml-2 font-bold rounded-lg px-4"
             style={{
               background: '#ff3434',
-              'paddingTop': '0.6rem',
-              'paddingBottom': '0.7rem',
+              paddingTop: '0.6rem',
+              paddingBottom: '0.7rem',
             }}
           >
             Submit
@@ -45,7 +68,7 @@ const WelcomeView = () => {
           <div className="time text-xl font-bold">
             <img
               src={ic_clock}
-              style={{ 'verticleAlign': 'middle' }}
+              style={{ verticleAlign: 'middle' }}
               className="inline mr-1"
               alt="clock"
             />
@@ -62,7 +85,7 @@ const WelcomeView = () => {
           <div className="driver-name text-right">
             <p className="text-grey text-sm">Supervisor</p>
             <p className="text-2xl font-bold" style={{ color: '#212121' }}>
-              Mahesh Kumar
+              {userData.Name}
             </p>
             <img src={ic_settings} className="inline" alt="settings icon" />
           </div>
@@ -72,55 +95,11 @@ const WelcomeView = () => {
         <div className="location text-center mt-6">
           <p className="font-bold" style={{ color: '#212121' }}>
             <img
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
-             
               className="inline"
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-                         src={ic_location_marker}
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-                         alt="location-icon"
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
+              src={ic_location_marker}
+              alt="location-icon"
             />
-            Warehouse, Gurgaon
+            {userData['Warehouse Name']}
           </p>
         </div>
       </div>
