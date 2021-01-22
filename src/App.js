@@ -10,41 +10,61 @@ export const VehicleContext = React.createContext();
 const App = () => {
   const [vehicle, setVehicles] = useState(vehicles);
   const [current, setCurrent] = useState(0);
+  const [loading, setLoading] = useState(false);
   document.title = 'Dashboard';
 
   const getData = () => {
+    setLoading(true);
+    const axiosHeaders = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        Accept: 'application/json',
+      },
+    };
     switch (current) {
       //today task
       case 0:
         axios
           .get(
-            'https://arc2e2m4p9.execute-api.us-west-2.amazonaws.com/dev/todaysTasks?date=2019/06/06&warehouse=COW3&Designation=Supervisor'
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/todaysTasks?Date=2019/06/03&Warehouse=DW3&Designation=Supervisor',
+            axiosHeaders
           )
           .then(res => {
+            setLoading(false);
+
             setVehicles(res.data);
           })
-          .catch(err => console.log(err));
+          .catch(err => console.error(err));
         break;
 
       case 1:
         //future task
         axios
           .get(
-            'https://arc2e2m4p9.execute-api.us-west-2.amazonaws.com/dev/futureTasks?warehouse=DW4&Designation=Supervisor'
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/completedTasks?Warehouse=DW1&Designation=Supervisor',
+
+            axiosHeaders
           )
           .then(res => {
+            setLoading(false);
+
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
         break;
 
       case 2:
-        //confirmed task
+        //completed task
         axios
           .get(
-            'https://arc2e2m4p9.execute-api.us-west-2.amazonaws.com/dev/confirmedTasks?warehouse=DW4&Designation=Supervisor'
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/completedTasks?Warehouse=DW1&Designation=Supervisor',
+
+            axiosHeaders
           )
           .then(res => {
+            setLoading(false);
+
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
@@ -55,9 +75,30 @@ const App = () => {
         //rejected task
         axios
           .get(
-            'https://arc2e2m4p9.execute-api.us-west-2.amazonaws.com/dev/rejectedTasks?warehouse=DW4&Designation=Supervisor'
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/rejectedTasks?Warehouse=DW4&Designation=Supervisor',
+
+            axiosHeaders
           )
           .then(res => {
+            setLoading(false);
+
+            setVehicles(res.data);
+          })
+          .catch(err => console.log(err));
+
+        break;
+
+      case 4:
+        //confirmed task
+        axios
+          .get(
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/confirmedTasks?Warehouse=DW4&Designation=Supervisor',
+
+            axiosHeaders
+          )
+          .then(res => {
+            setLoading(false);
+
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
@@ -72,13 +113,9 @@ const App = () => {
 
   return (
     <div className="dashboard">
-      <SideBar
-        setVehicles={setVehicles}
-        current={current}
-        setCurrent={setCurrent}
-      />
+      <SideBar current={current} setCurrent={setCurrent} />
       <VehicleContext.Provider value={vehicle}>
-        <Dashboard />
+        <Dashboard loading={loading} />
         <Info current={current} />
       </VehicleContext.Provider>
     </div>

@@ -9,22 +9,29 @@ import img_bill from '../assets/icons/bill.jpeg';
 const WelcomeView = () => {
   const [userData, SetUserData] = useState({});
 
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setDate(new Date()), 1000);
+    return function cleanup() {
+      clearInterval(timer);
+    };
+  });
+
   const fetchUser = () => {
     axios
       .get(
-        'https://arc2e2m4p9.execute-api.us-west-2.amazonaws.com/dev/login?Mob No=123456700',
+        'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/login?Mob%20No=123456700',
         {
           headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET',
             Accept: 'application/json',
           },
         }
       )
-      .then(res => {
-        SetUserData(res.data['User Data']);
-        console.log(userData);
-      });
+      .then(res => SetUserData(res.data['User Data']))
+      .catch(err => console.log(err));
   };
 
   useEffect(fetchUser, []);
@@ -72,12 +79,15 @@ const WelcomeView = () => {
               className="inline mr-1"
               alt="clock"
             />
-            3:50 PM
+            {date.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
           </div>
 
           <div className="date ml-auto text-sm font-bold">
             <img src={ic_calender} className="inline" alt="ic_calendar" />
-            6th Aug 2020
+            {date.toLocaleDateString('en-GB')}
           </div>
         </div>
 

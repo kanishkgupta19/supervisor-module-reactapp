@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ic_sort from '../assets/icons/ic_sort.svg';
 import ic_filter from '../assets/icons/ic_filter.svg';
 import VehicleList from './vehicleList';
+import {VehicleContext} from '../App';
 
-const Vehicles = () => {
+const Vehicles = ({ loading }) => {
+  const vehicleData = useContext(VehicleContext);
+  const length = vehicleData.length;
+
   return (
     <React.Fragment>
       <div
@@ -15,7 +19,7 @@ const Vehicles = () => {
           className="ml-auto text-md pt-1 px-4 rounded-full"
           style={{ color: '#212121', border: '1px solid #212121' }}
         >
-          Total Count: <span className="font-bold"> 10 </span>
+          Total Count: <span className="font-bold"> {length} </span>
         </p>
       </div>
 
@@ -28,14 +32,14 @@ const Vehicles = () => {
             ALL
           </p>
           <p>Vehicle No.</p>
-          <p>Date</p>
-          <p>Status</p>
+          <p>Mobile No.</p>
+          <p>To</p>
           <div className="flex flex-row">
             <img src={ic_sort} className="w-16" alt="sort" />
             <img src={ic_filter} style={{ width: '4.5rem' }} alt="filter" />
           </div>
         </div>
-        <VehicleList />
+        <VehicleList loading={loading}  />
       </div>
     </React.Fragment>
   );

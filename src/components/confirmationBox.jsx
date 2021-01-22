@@ -1,6 +1,44 @@
+import axios from 'axios';
 import React from 'react';
 
 const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
+  const sendConfirmation = c => {
+    switch (c) {
+      case 'yes':
+        axios
+          .get(
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/futureTasks/confirmed?date=2019/06/03&FromWarehouse=DW4&ToWarehouse=GW2&TruckNum=T17&Length=1',
+            {
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                Accept: 'application/json',
+              },
+            }
+          )
+          .then(res => alert(res.data))
+          .catch(err => console.error(err));
+        break;
+      case 'no':
+        axios
+          .get(
+            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/futureTasks/rejected?date=2019/06/03&FromWarehouse=DW4&ToWarehouse=GW2&TruckNum=T17&Length=1',
+            {
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                Accept: 'application/json',
+              },
+            }
+          )
+          .then(res => alert(res.data))
+          .catch(err => console.error(err));
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="w-350px" id="confirmation-box">
@@ -74,14 +112,20 @@ const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
             <button
               className="bg-blue py-1 px-8 rounded-full text-white font-bold pointer shadow"
               id="yes"
-              onClick={() => setConfirmed('yes')}
+              onClick={() => {
+                setConfirmed('yes');
+                sendConfirmation('yes');
+              }}
             >
               Yes
             </button>
             <button
               className="ml-auto bg-red py-1 px-8 rounded-full text-white font-bold pointer shadow"
               id="no"
-              onClick={() => setConfirmed('no')}
+              onClick={() => {
+                setConfirmed('no');
+                sendConfirmation('no');
+              }}
             >
               No
             </button>

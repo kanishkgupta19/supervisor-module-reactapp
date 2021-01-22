@@ -3,12 +3,12 @@ import Search from './search';
 import Vehicles from './vehicles';
 import WelcomeView from './welcomeview';
 
-const Dashboard = () => {
+const Dashboard = ({ loading }) => {
   return (
     <div className="dashboard-view">
       <Search />
       <WelcomeView />
-      <Vehicles />
+      <Vehicles loading={loading}  />
     </div>
   );
 };
