@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import img_truck from '../assets/icons/truck.svg';
 import number_plate from '../assets/icons/number_plate.svg';
 import img_bill from '../assets/icons/bill.jpeg';
 import Status from './status';
+import { VehicleContext } from '../App';
 
-const Info = ({ current }) => {
+const Info = ({ current, index }) => {
+  const vehicleData = useContext(VehicleContext);
+  const vehicle = vehicleData[index] || {
+    Truck_Number: '',
+    Length_of_route: '',
+    Estimated_Date_Time_of_Pickup: '',
+    Unloading_Start_Time: '',
+    Loading_start_time: '',
+    To: '',
+    Time_at_which_Vehicle_left_the_warehouse: '',
+    Weight_Truck_Carrying: '',
+    First_Driver_Name: '',
+    Driver_Mob_No: '',
+  };
+
   return (
     <React.Fragment>
       <div className="vehicle-information">
@@ -13,11 +28,11 @@ const Info = ({ current }) => {
           <div className="flex flex-row mt-6">
             <img src={img_truck} alt="truck-logo" />
             <div className="ml-4">
-              <p className="">Tata Truck, Model A</p>
+              <p className=""></p>
               <div className="mt-2" style={{ position: 'relative' }}>
                 <img src={number_plate} className="w-40" alt="truck number" />
                 <p className="number-plate text-md text-black font-bold -ml-3">
-                  RJ 02 GB 2222
+                  {vehicle.Truck_Number}
                 </p>
               </div>
             </div>
@@ -34,35 +49,37 @@ const Info = ({ current }) => {
               />
               <div className="driver-name ml-2">
                 <p className="text-grey text-sm">Driver</p>
-                <p className="text-black -mt-1 font-bold">Neeraj Hooda</p>
+                <p className="text-black -mt-1 font-bold">
+                  {vehicle.First_Driver_Name}
+                </p>
               </div>
             </div>
 
             <div className="ml-auto pt-3">
-              <p
+              <a
                 className="bg-blue text-white text-sm rounded-full px-3 py-1 font-semibold"
-                style={{ cursor: 'pointer' }}
+                href={`tel:${vehicle.Driver_Mob_No}`}
               >
                 Contact
-              </p>
+              </a>
             </div>
           </div>
 
           <div className="flex flex-row mt-6">
             <div className="">
               <p className="text-grey text-xs">Address</p>
-              <p className="text-black -mt-1 font-bold text-xs">
-                324 Sector, Kerala, India
-              </p>
+              <p className="text-black -mt-1 font-bold text-xs">Not Found</p>
             </div>
 
             <div className="ml-auto">
               <p className="text-grey text-xs">Phone</p>
-              <p className="text-black -mt-1 font-bold text-xs">9876543210</p>
+              <p className="text-black -mt-1 font-bold text-xs">
+                {vehicle.Driver_Mob_No}
+              </p>
             </div>
           </div>
         </div>
-        <Status current={current} />
+        <Status current={current} vehicle={vehicle} />
       </div>
     </React.Fragment>
   );

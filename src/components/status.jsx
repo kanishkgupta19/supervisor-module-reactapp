@@ -5,7 +5,7 @@ import ConfirmationBox from './confirmationBox';
 import ConfirmedBox from './confirmedBox';
 import RejectionMessageBox from './rejectionMessageBox';
 
-const Status = ({ current }) => {
+const Status = ({ current, vehicle }) => {
   const [showStatus, setShowStatus] = useState(false);
   const [confirmed, setConfirmed] = useState('');
   if (current === 0) {
@@ -17,10 +17,14 @@ const Status = ({ current }) => {
               <img src={ic_tick} alt="completed" />
             </div>
             <div className="ml-4">
-              <p className="text-black text-md font-bold">ARRIVAL</p>
+              <p className="text-black text-md font-bold">
+                Estimated Date of Pickup
+              </p>
               <p className="text-grey text-xs">
                 Location A, Noida
-                <span className="text-black ml-10"> 7 July, 9:30 AM</span>
+                <span className="text-black ml-10">
+                  {vehicle.Estimated_Date_Time_of_Pickup}
+                </span>
               </p>
             </div>
           </div>
@@ -37,7 +41,10 @@ const Status = ({ current }) => {
               <p className="text-black text-md font-bold">UNLOADING</p>
               <p className="text-grey text-xs">
                 Location B, Noida
-                <span className="text-black ml-10"> 7 July, 11:30 AM</span>
+                <span className="text-black ml-10">
+                  {' '}
+                  {vehicle.Unloading_Start_Time}
+                </span>
               </p>
             </div>
           </div>
@@ -49,10 +56,12 @@ const Status = ({ current }) => {
           <div className="flex flex-row -mt-2">
             <div className="bg-white h-3 w-3 p-2 rounded-full mt-3 border-gray"></div>
             <div className="ml-4">
-              <p className="text-black text-md font-bold">UNLOADING</p>
+              <p className="text-black text-md font-bold">LOADING</p>
               <p className="text-grey text-xs">
                 Location C, Noida
-                <span className="text-black ml-10"> 7 July, 12:10 AM</span>
+                <span className="text-black ml-10">
+                  {vehicle.Loading_start_time}
+                </span>
               </p>
             </div>
           </div>
@@ -67,7 +76,9 @@ const Status = ({ current }) => {
               <p className="text-black text-md font-bold">DEPARTURE</p>
               <p className="text-grey text-xs">
                 Location C, Noida
-                <span className="text-black ml-10"> 7 July, 14:30 AM</span>
+                <span className="text-black ml-10">
+                  {vehicle.Time_at_which_Vehicle_left_the_warehouse}
+                </span>
               </p>
             </div>
           </div>
@@ -81,10 +92,11 @@ const Status = ({ current }) => {
           showStatus={showStatus}
           setShowStatus={setShowStatus}
           setConfirmed={setConfirmed}
+          vehicle={vehicle}
         />
       );
     } else if (confirmed === 'yes') {
-      return <ConfirmedBox />;
+      return <ConfirmedBox vehicle={vehicle} />;
     } else if (confirmed === 'no') {
       return <RejectionMessageBox />;
     }
@@ -94,7 +106,9 @@ const Status = ({ current }) => {
         <div className="w-350px">
           <div className="ml-8 mt-6">
             <h6 className="text-grey text-sm font-bold">ETA</h6>
-            <p className="text-black font-bold">19/06/20 @ 10:00 AM</p>
+            <p className="text-black font-bold">
+              19/06/20 @ {vehicle.Estimated_Date_Time_of_Pickup}
+            </p>
 
             <hr
               className="bg-grey w-32 mt-2 mb-2"
@@ -102,7 +116,9 @@ const Status = ({ current }) => {
             />
 
             <h6 className="text-grey text-sm font-bold">UNLOADING</h6>
-            <p className="text-black font-bold">Starts @ 10:25 AM</p>
+            <p className="text-black font-bold">
+              Starts @ {vehicle.Unloading_Start_Time}
+            </p>
 
             <hr
               className="bg-grey w-32 mt-2 mb-2"
@@ -110,7 +126,9 @@ const Status = ({ current }) => {
             />
 
             <h6 className="text-grey text-sm font-bold">LOADING</h6>
-            <p className="text-black font-bold">Starts @ 12:00 PM</p>
+            <p className="text-black font-bold">
+              Starts @ {vehicle.Loading_start_time}
+            </p>
 
             <hr
               className="bg-grey w-32 mt-2"
@@ -154,7 +172,9 @@ const Status = ({ current }) => {
             <br />
 
             <h6 className="text-grey text-sm font-bold">ETA</h6>
-            <p className="text-black font-bold">19/06/20 @ 10:00 AM</p>
+            <p className="text-black font-bold">
+              19/06/20 @ {vehicle.Estimated_Date_Time_of_Pickup}
+            </p>
 
             <hr
               className="bg-grey w-32 mt-2 mb-2"
@@ -162,8 +182,12 @@ const Status = ({ current }) => {
             />
 
             <h6 className="text-grey text-sm font-bold">UNLOADING</h6>
-            <p className="text-black font-bold">Starts @ 10:25 AM</p>
-            <p className="text-black font-bold">Ends @ 12:00 PM</p>
+            <p className="text-black font-bold">
+              Starts @ {vehicle.Unloading_Start_Time}
+            </p>
+            <p className="text-black font-bold">
+              Ends @ {vehicle.Unloading_Start_Time}
+            </p>
 
             <hr
               className="bg-grey w-32 mt-2 mb-2"
@@ -173,7 +197,8 @@ const Status = ({ current }) => {
             <br />
 
             <p className="text-black text-sm font-bold">
-              Vehicle leaves the Warehouse @ 13:10 PM because
+              Vehicle leaves the Warehouse @
+              {vehicle.Estimated_Date_Time_of_Pickup} because
             </p>
 
             <br />

@@ -1,18 +1,31 @@
 import React, { useContext, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
-import ic_sort from '../assets/icons/ic_sort.svg';
-import ic_filter from '../assets/icons/ic_filter.svg';
 import ic_parcel_box from '../assets/icons/ic-parcel_box.png';
 import number_plate from '../assets/icons/number_plate.svg';
+import progress_tag from '../assets/icons/progress_tag.png';
+import dispatched_tag from '../assets/icons/dispatched_tag.png';
+import delayed_tag from '../assets/icons/delayed_tag.png';
+import confirmed_tag from '../assets/icons/confirmed_tag.svg';
+import pending_tag from '../assets/icons/pending_tag.svg';
+import rejected_tag from '../assets/icons/rejected_tag.svg';
 import { VehicleContext } from '../App';
 
-const VehicleList = ({ loading }) => {
+const status = {
+  progress_tag,
+  dispatched_tag,
+  delayed_tag,
+  confirmed_tag,
+  pending_tag,
+  rejected_tag,
+};
+
+const VehicleList = ({ loading, setIndex }) => {
   const vehicleData = useContext(VehicleContext);
   const [hidden, setHidden] = useState({ 0: false });
+
   if (loading) {
     return (
-      <div style={{marginLeft: '50%', marginTop: '100px'}}>
-        
+      <div style={{ marginLeft: '50%', marginTop: '100px' }}>
         <PulseLoader />
       </div>
     );
@@ -24,8 +37,8 @@ const VehicleList = ({ loading }) => {
             key={index}
             className={
               hidden[index]
-                ? 'vehicle-info-card-active vehicle-info-card grid grid-cols-5 p-3 mb-4 text-grey font-bold text-sm text-center'
-                : 'vehicle-info-card grid grid-cols-5 p-3 mb-4 text-grey font-bold text-sm text-center'
+                ? 'vehicle-info-card-active vehicle-info-card grid grid-cols-6 p-3 mb-4 text-grey font-bold text-sm text-center'
+                : 'vehicle-info-card grid grid-cols-6 p-3 mb-4 text-grey font-bold text-sm text-center'
             }
             id="vehicle-info-card"
           >
@@ -52,16 +65,23 @@ const VehicleList = ({ loading }) => {
             <div className="pt-3">
               <p className="text-black">{value.To}</p>
             </div>
+            <div className="pt-3">
+              <img
+                src={value.status || status.progress_tag}
+                className="w-32 inline"
+                alt={value.status || 'progress'}
+              />
+            </div>
             <div className="pt-4 text-orange">
               <p
                 className="underline pointer"
                 id="view-details"
-                onClick={() =>
+                onClick={() => {
+                  setIndex(index);
                   setHidden(prevState => ({
-                    ...prevState,
                     [index]: !prevState[index],
-                  }))
-                }
+                  }));
+                }}
               >
                 View Details
               </p>

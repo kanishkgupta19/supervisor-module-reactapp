@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import SideBar from './components/sidebar';
 import Dashboard from './components/dashboard';
 import Info from './components/info';
-import vehicles from './assets/vehicles.json';
 import axios from 'axios';
 
 export const VehicleContext = React.createContext();
 
 const App = () => {
-  const [vehicle, setVehicles] = useState(vehicles);
+  const [vehicle, setVehicles] = useState([]);
   const [current, setCurrent] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [index, setIndex] = useState(0);
   document.title = 'Dashboard';
 
   const getData = () => {
@@ -32,7 +32,6 @@ const App = () => {
           )
           .then(res => {
             setLoading(false);
-
             setVehicles(res.data);
           })
           .catch(err => console.error(err));
@@ -48,7 +47,6 @@ const App = () => {
           )
           .then(res => {
             setLoading(false);
-
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
@@ -64,7 +62,6 @@ const App = () => {
           )
           .then(res => {
             setLoading(false);
-
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
@@ -81,7 +78,6 @@ const App = () => {
           )
           .then(res => {
             setLoading(false);
-
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
@@ -98,7 +94,6 @@ const App = () => {
           )
           .then(res => {
             setLoading(false);
-
             setVehicles(res.data);
           })
           .catch(err => console.log(err));
@@ -115,8 +110,8 @@ const App = () => {
     <div className="dashboard">
       <SideBar current={current} setCurrent={setCurrent} />
       <VehicleContext.Provider value={vehicle}>
-        <Dashboard loading={loading} />
-        <Info current={current} />
+        <Dashboard loading={loading} setIndex={setIndex} />
+        <Info current={current} index={index} />
       </VehicleContext.Provider>
     </div>
   );

@@ -1,11 +1,17 @@
 import React from 'react';
 
-const ConfirmedBox = () => {
+const ConfirmedBox = ({ vehicle }) => {
   return (
     <div className="w-350px" id="confirmed-box">
       <div className="ml-8 mt-6">
         <h6 className="text-grey text-sm font-bold">ETA</h6>
-        <p className="text-black font-bold">19/06/20 @ 10:00 AM</p>
+        <p className="text-black font-bold">
+          
+          
+          {vehicle.Time_at_which_Vehicle_left_the_warehouse}
+        
+        
+        </p>
 
         <hr
           className="bg-grey w-32 mt-2 mb-2"
@@ -13,8 +19,8 @@ const ConfirmedBox = () => {
         />
 
         <h6 className="text-grey text-sm font-bold">UNLOADING</h6>
-        <p className="text-black font-bold">Starts @ 10:25 AM</p>
-        <p className="text-black font-bold">Ends @ 12:00 PM</p>
+        <p className="text-black font-bold">Starts @ {vehicle.Unloading_Start_Time}</p>
+        <p className="text-black font-bold">Ends @ {vehicle.Unloading_Start_Time}</p>
 
         <hr
           className="bg-grey w-32 mt-2 mb-2"
@@ -22,8 +28,8 @@ const ConfirmedBox = () => {
         />
 
         <h6 className="text-grey text-sm font-bold">LOADING</h6>
-        <p className="text-black font-bold">Starts @ 12:00 PM</p>
-        <p className="text-black font-bold">Ends @ 13:15 PM</p>
+        <p className="text-black font-bold">Starts @ {vehicle.Loading_start_time}</p>
+        <p className="text-black font-bold">Ends @ {vehicle.Loading_start_time} </p>
 
         <hr
           className="bg-grey w-32 mt-2"
@@ -37,7 +43,7 @@ const ConfirmedBox = () => {
           style={{ border: '2px solid #e5e6ea' }}
         >
           Vehicle leaves the warehouse LW1
-          <span className="text-black"> @ 13:40 PM </span>
+          <span className="text-black"> @ {vehicle.Time_at_which_Vehicle_left_the_warehouse} </span>
         </p>
 
         <br />

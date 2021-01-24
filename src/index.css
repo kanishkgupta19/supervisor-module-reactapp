@@ -3,8 +3,8 @@ html {
   padding: 0;
 }
 
-
 body {
+  all: initial;
   margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
@@ -12,36 +12,31 @@ body {
 
 .dashboard {
   display: grid;
-  grid-template-columns: .5fr 3fr 1fr;
+  grid-template-columns: 0.5fr 3fr 1fr;
 }
 
 .navs:hover {
-  background-color: #FEEADC;
+  background-color: #feeadc;
 }
-
-
 
 .dashboard-view {
   background-color: #fafafa;
 }
 
-
-
 .search-notification {
   margin-top: 30px;
 }
 
-.search-notification input{
+.search-notification input {
   width: 80%;
   padding: 15px 15px 15px 40px;
-  border: 1px solid #FEEADC;
+  border: 1px solid #feeadc;
   border-radius: 5px;
-  font-size:14px;
+  font-size: 14px;
   font-weight: bold;
   color: #999;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 .search-notification a {
   background-color: #fff;
@@ -59,10 +54,9 @@ body {
   grid-gap: 10px;
 }
 
-
-
 .parcel-search {
-  background: url('./assets/icons/search_parcel_card_bg.png') center center no-repeat;
+  background: url('./assets/icons/search_parcel_card_bg.png') center center
+    no-repeat;
   background-size: cover;
   max-width: 100%;
 }
@@ -70,7 +64,7 @@ body {
 .driver-details {
   height: 275px;
   max-width: 100%;
-  border: 14px solid #FEEADC;
+  border: 14px solid #feeadc;
   border-radius: 14px;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
@@ -83,13 +77,13 @@ body {
 
 .number-plate {
   position: absolute;
-  top:50%;
-  left:25%;
+  top: 50%;
+  left: 25%;
   transform: translate(0, -50%);
 }
 
 .vehicle-info {
-  background-color: #FEEADC;
+  background-color: #feeadc;
   width: 350px;
   height: 300px;
   color: #707070;
@@ -104,7 +98,6 @@ body {
   border-right: none;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 .vehicle-info-card:hover {
   background: white;
@@ -195,7 +188,7 @@ body {
 }
 
 .bg-blue {
-  background-color: #348AFF;
+  background-color: #348aff;
 }
 
 .bg-orange {

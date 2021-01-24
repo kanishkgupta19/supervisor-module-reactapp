@@ -8,6 +8,7 @@ import completed_task_icon_off from '../assets/icons/ic_completed_task_icon.svg'
 import rejected_task_icon_on from '../assets/icons/ic_rejected_task_icon_on.svg';
 import rejected_task_icon_off from '../assets/icons/ic_rejected_task_icon.svg';
 import brand_logo from '../assets/icons/brand_logo.png';
+import '../index.css';
 
 const SideBar = ({ current, setCurrent }) => {
   return (

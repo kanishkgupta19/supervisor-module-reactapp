@@ -1,13 +1,18 @@
 import axios from 'axios';
 import React from 'react';
 
-const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
+const ConfirmationBox = ({
+  showStatus,
+  setShowStatus,
+  setConfirmed,
+  vehicle,
+}) => {
   const sendConfirmation = c => {
     switch (c) {
       case 'yes':
         axios
           .get(
-            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/futureTasks/confirmed?date=2019/06/03&FromWarehouse=DW4&ToWarehouse=GW2&TruckNum=T17&Length=1',
+            `https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/futureTasks/confirmed?date=2019/06/03&FromWarehouse=DW4&ToWarehouse=${vehicle.To}&TruckNum=${vehicle.Truck_Number}&Length=1`,
             {
               headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -22,7 +27,7 @@ const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
       case 'no':
         axios
           .get(
-            'https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/futureTasks/rejected?date=2019/06/03&FromWarehouse=DW4&ToWarehouse=GW2&TruckNum=T17&Length=1',
+            `https://v1fh5fvz31.execute-api.us-west-2.amazonaws.com/dev/futureTasks/rejected?date=2019/06/03&FromWarehouse=DW4&ToWarehouse=${vehicle.To}&TruckNum=${vehicle.Truck_Number}&Length=1`,
             {
               headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -44,7 +49,9 @@ const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
       <div className="w-350px" id="confirmation-box">
         <div className="ml-8 mt-6">
           <h6 className="text-grey text-sm font-bold">ETA</h6>
-          <p className="text-black font-bold">19/06/20 @ 10:00 AM</p>
+          <p className="text-black font-bold">
+            {vehicle.Time_at_which_Vehicle_left_the_warehouse}
+          </p>
 
           <hr
             className="bg-grey w-32 mt-2 mb-2"
@@ -52,7 +59,9 @@ const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
           />
 
           <h6 className="text-grey text-sm font-bold">UNLOADING</h6>
-          <p className="text-black font-bold">Starts @ 10:25 AM</p>
+          <p className="text-black font-bold">
+            Starts @ {vehicle.Unloading_Start_Time}
+          </p>
 
           <hr
             className="bg-grey w-32 mt-2 mb-2"
@@ -60,7 +69,9 @@ const ConfirmationBox = ({ showStatus, setShowStatus, setConfirmed }) => {
           />
 
           <h6 className="text-grey text-sm font-bold">LOADING</h6>
-          <p className="text-black font-bold">Starts @ 12:00 PM</p>
+          <p className="text-black font-bold">
+            Starts @ {vehicle.Loading_start_time}
+          </p>
 
           <hr
             className="bg-grey w-32 mt-2"

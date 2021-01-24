@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import ic_sort from '../assets/icons/ic_sort.svg';
 import ic_filter from '../assets/icons/ic_filter.svg';
 import VehicleList from './vehicleList';
-import {VehicleContext} from '../App';
+import { VehicleContext } from '../App';
 
-const Vehicles = ({ loading }) => {
+const Vehicles = ({ loading, setIndex }) => {
   const vehicleData = useContext(VehicleContext);
   const length = vehicleData.length;
 
@@ -24,7 +24,7 @@ const Vehicles = ({ loading }) => {
       </div>
 
       <div className="vehicle-details mt-8 pl-3">
-        <div className="grid grid-cols-5 p-3 text-black text-sm font-bold text-center heading">
+        <div className="grid grid-cols-6 p-3 text-black text-sm font-bold text-center heading">
           <p
             className="bg-black shadow text-white text-sm rounded-lg w-20 h-10 text-center ml-8"
             style={{ cursor: 'pointer' }}
@@ -34,12 +34,13 @@ const Vehicles = ({ loading }) => {
           <p>Vehicle No.</p>
           <p>Mobile No.</p>
           <p>To</p>
+          <p>Status</p>
           <div className="flex flex-row">
             <img src={ic_sort} className="w-16" alt="sort" />
             <img src={ic_filter} style={{ width: '4.5rem' }} alt="filter" />
           </div>
         </div>
-        <VehicleList loading={loading}  />
+        <VehicleList loading={loading} setIndex={setIndex} />
       </div>
     </React.Fragment>
   );
