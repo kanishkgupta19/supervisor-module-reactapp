@@ -17,12 +17,11 @@ const SignInPage = () => {
       .then(res => {
         if (res.data['User Data']['Designation'] === 'Supervisor')
           history.push('/dashboard');
-        else alert('Wrong Id or Password');
+        else alert(`${res.data}`);
         console.log(res);
       })
       .catch(err => {
-        console.error(err);
-        alert('Wrong Id or Password');
+        alert(err);
       });
   };
 
